@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.lang.Double
 import kotlin.Any
@@ -38,15 +39,33 @@ class MainActivity : AppCompatActivity() {
         btnDiv = findViewById<Button>(R.id.BtnDiv)
         textResult = findViewById<TextView>(R.id.TextResult)
 
-        btnAdd.setOnTouchListener { view, motionEvent ->
+//        btnAdd.setOnTouchListener { view, motionEvent ->
+//            num1= edit1.text.toString()
+//            num2= edit2.text.toString()
+//            result = Integer.parseInt(num1) + Integer.parseInt(num2)
+//
+//
+//            textResult.text="Result는 " + result.toString()
+//            false
+//        }
+
+        btnAdd.setOnClickListener {
             num1= edit1.text.toString()
             num2= edit2.text.toString()
-            result = Integer.parseInt(num1) + Integer.parseInt(num2)
 
+            if (num1.trim () == "" || num2.trim() == "") {
+                Toast.makeText(applicationContext, "입력 값이 빔", Toast.LENGTH_LONG).show()
+            }else{
+                Log.i("num", num1)
+                Log.i("num", num2.trim())
+                result = Integer.parseInt(num1.trim ()) + Integer.parseInt(num2.trim ())
+               textResult.text="Result는 " + result.toString()
+            }
 
-            textResult.text="Result는 " + result.toString()
-            false
         }
+
+
+
 
         btnSub.setOnTouchListener { view, motionEvent ->
             num1= edit1.text.toString()
